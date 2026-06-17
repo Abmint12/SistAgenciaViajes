@@ -1,27 +1,18 @@
 package com.agenciaviajes.backend.service;
 
+import com.agenciaviajes.backend.model.Cliente;
+
 import java.util.List;
 
-import org.springframework.stereotype.Service;
+public interface ClienteService {
 
-import com.agenciaviajes.backend.model.Cliente;
-import com.agenciaviajes.backend.repository.ClienteRepository;
+    List<Cliente> listar();
 
-@Service
-public class ClienteService {
-    private final ClienteRepository repository;
-    public ClienteService(ClienteRepository repository){
-        this.repository=repository;
-    }
-public List<Cliente>listar(){
-    return repository.findAll();
-    }
-public Cliente guardar(Cliente cliente){
-    
-    //validacion de cedula backend
-    if(cliente.getCedula().length()!=10){
-        throw new RuntimeException("Cedula inválida");
-    }
-    return repository.save(cliente);
-}
+    Cliente buscarPorId(Long id);
+
+    Cliente guardar(Cliente cliente);
+
+    Cliente actualizar(Long id, Cliente cliente);
+
+    void eliminar(Long id);
 }

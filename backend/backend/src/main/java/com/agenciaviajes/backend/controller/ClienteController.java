@@ -8,8 +8,11 @@ import com.agenciaviajes.backend.service.ClienteService;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -31,6 +34,19 @@ public class ClienteController {
         return service.guardar(cliente);
     }
     
+    @GetMapping("/{id}")
+    public Cliente buscarPorId(@PathVariable Long id){
+        return service.buscarPorId(id);
+    }
+
+    @PutMapping("/{id}")
+    public Cliente actualizar(@PathVariable Long id, @RequestBody Cliente cliente){
+        return service.actualizar(id, cliente);
+    }
     
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Long id){
+        service.eliminar(id);
+    }        
     
 }
