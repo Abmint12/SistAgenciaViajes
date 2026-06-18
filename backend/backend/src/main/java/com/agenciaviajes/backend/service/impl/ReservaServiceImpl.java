@@ -89,7 +89,6 @@ public class ReservaServiceImpl implements ReservaService {
         reserva.setCantPasajes(request.getCantPasajes());
         reserva.setCostoTotal(request.getCostoTotal());
         reserva.setEstado(request.getEstado());
-
         return convertirResponse(reservaRepository.save(reserva));
     }
 
