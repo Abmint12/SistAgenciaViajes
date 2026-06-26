@@ -1,21 +1,78 @@
-# Sistema de Agencia de Viajes
+#  Sistema de Agencia de Viajes-GRUPO 12
 
-Proyecto académico para la gestión de reservas de pasajes y pagos.
+- Aguilera Zambrano Juan José
+-  Camatón Laínez Segundo Rodolfo
+-  Palma Carreño Diego Fernando
+-  Zambrano Valverde Luis Abraham
+-  Zhinin Muruzumbay Lady Nathaly
 
-## Módulos
+Proyecto desarrollado para la gestión de una agencia de viajes, que permite administrar clientes, reservas, destinos y facturación.
 
-- Clientes
-- Reservas
-- Pagos
+El sistema está dividido en tres capas:
+- 🖥️ Frontend: React + Vite
+- ⚙️ Backend: Spring Boot (Java)
+- 🗄️ Base de datos: PostgreSQL
 
-## Ramas
+---
+## Tecnologías utilizadas
 
-- main: versión estable
-- develop: integración
-- debug: corrección de errores
+### Frontend
+- React
+- Vite
+- JavaScript
+- Axios
+- Tailwind CSS (si aplica)
 
-## Flujo de trabajo
+### Backend
+- Java
+- Spring Boot
+- Spring Data JPA
+- Spring Web
+- Spring Security (si aplica)
 
-feature/* -> develop -> main
+### Base de Datos
+- MySQL / PostgreSQL (según configuración)
 
-Todo merge a main requiere aprobación del propietario del repositorio.
+---
+
+## 📁 Estructura del proyecto en develop
+
+SistAgenciaViajes/
+│
+├── backend/ # API REST con Spring Boot
+├── frontend/ # Aplicación React
+├── database/ # Scripts SQL
+├── .gitignore
+└── README.md
+
+
+---
+
+## ⚙️ Instalación del proyecto
+
+### 1. Clonar repositorio desde develop
+```bash
+git clone -b develop https://github.com/Abmint12/SistAgenciaViajes.git
+
+---
+#### 2. Ejectuar frontend
+```bash
+cd frontend
+npm install
+npm run dev
+---
+
+#### 3. Ejectuar backend
+```bash
+cd backend
+ls
+cd backend
+
+```
+
+Ejecutar:
+
+```bash
+./mvnw spring-boot:run
+```
+

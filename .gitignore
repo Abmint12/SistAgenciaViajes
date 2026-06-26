@@ -6,6 +6,7 @@ target/
 
 *.class
 *.log
+
 ### STS ###
 .apt_generated
 .classpath
@@ -34,9 +35,17 @@ build/
 ### VS Code ###
 .vscode/
 
+# ===== ENV =====
 .env
-#node_modules
+
+# ===== NODE / REACT =====
 node_modules/
 dist/
 build/
-.env
+
+# frontend específico
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.env
+frontend/.vite/
