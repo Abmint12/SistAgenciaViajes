@@ -15,4 +15,6 @@ Usuario guardar (Usuario usuario);
 void eliminar (Integer id);
 
 Usuario actualizar(Integer id, Usuario usuario);
+
+Usuario login(String nombreUsuario, String contrasena);
 }
