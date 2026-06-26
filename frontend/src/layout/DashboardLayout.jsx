@@ -5,7 +5,7 @@ export default function DashboardLayout() {
   return (
     <div style={{ display: "flex", height: "100vh" }}>
       
-      {/*  BORRAR ESTO */}
+  
       {/* <Sidebar backendOnline={true} /> */}
 
       <div style={{ flex: 1, padding: "20px" }}>
