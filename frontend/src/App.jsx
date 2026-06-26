@@ -5,18 +5,21 @@ import DashboardLayout from "./layout/DashboardLayout";
 
 import DashboardHome from "./pages/dashboard/Dashboard";
 import Reservas from "./pages/reservas/ReservasPage";
+import ClientesPage from "./pages/clientes/ClientesPage";
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
 
+        {/* LOGIN */}
         <Route path="/" element={<Login />} />
 
-        {/* LAYOUT */}
+        {/* DASHBOARD */}
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<DashboardHome />} />
           <Route path="reservas" element={<Reservas />} />
+          <Route path="clientes" element={<ClientesPage />} />
         </Route>
 
       </Routes>
