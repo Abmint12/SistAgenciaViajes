@@ -1,16 +1,16 @@
 import { Outlet } from "react-router-dom";
-// import Sidebar from "../components/Sidebar";
+import Sidebar from "../components/Sidebar";
 
 export default function DashboardLayout() {
   return (
-    <div style={{ display: "flex", height: "100vh" }}>
-      
-  
-      {/* <Sidebar backendOnline={true} /> */}
+    <div className="flex h-screen bg-page">
 
-      <div style={{ flex: 1, padding: "20px" }}>
+      <Sidebar backendOnline={true} />
+
+      <main className="flex-1 overflow-y-auto bg-page">
         <Outlet />
-      </div>
+      </main>
+
     </div>
   );
 }

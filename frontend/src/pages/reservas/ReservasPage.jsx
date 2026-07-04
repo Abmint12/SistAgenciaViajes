@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Plus, RefreshCw, Search } from 'lucide-react'
-import Sidebar from '../../components/Sidebar'
 import StatCard from '../../components/StatCard'
 import ReservasTable from '../../components/ReservasTable'
 import ReservaFormPanel from '../../components/ReservaFormPanel'
@@ -118,9 +117,8 @@ export default function ReservasPage() {
 
   return (
     <div className="flex h-screen bg-page text-slate-900">
-      <Sidebar active="reservas" backendOnline={backendOnline} />
 
-      <main className="flex-1 overflow-y-auto thin-scroll">
+      <main className="overflow-y-auto thin-scroll">
         <div className="mx-auto max-w-[1400px] px-10 py-8">
           <header className="mb-7 flex items-start justify-between">
             <div>
@@ -226,7 +224,9 @@ export default function ReservasPage() {
         <div
           className={[
             'fixed bottom-6 right-6 z-50 rounded-xl px-4 py-3 text-sm font-medium text-white shadow-lg',
-            toast.type === 'error' ? 'bg-rose-600' : 'bg-brand-600',
+            toast.type === 'error'
+              ? 'bg-rose-600'
+              : 'bg-brand-600',
           ].join(' ')}
         >
           {toast.message}
