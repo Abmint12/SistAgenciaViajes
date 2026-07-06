@@ -53,4 +53,21 @@ public class UsuarioServiceImpl implements UsuarioService {
 
             return usuarioRepository.save(usuarioExistente);
     }
+
+    @Override
+public Usuario login(String nombreUsuario, String contrasena) {
+
+    Usuario usuario = usuarioRepository.findByNombreUsuario(nombreUsuario)
+            .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
+
+    if (!usuario.getContrasena().equals(contrasena)) {
+        throw new RuntimeException("Contraseña incorrecta");
+    }
+
+    if (!usuario.getActivo()) {
+        throw new RuntimeException("Usuario inactivo");
+    }
+
+    return usuario;
+}
 }

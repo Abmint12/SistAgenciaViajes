@@ -1,67 +1,68 @@
-﻿# Sistema Agencia de Viajes Grupo12
-# Agencia de Viajes - Backend API
+#  Sistema de Agencia de Viajes-GRUPO 12
 
-## Descripción
+- Aguilera Zambrano Juan José
+-  Camatón Laínez Segundo Rodolfo
+-  Palma Carreño Diego Fernando
+-  Zambrano Valverde Luis Abraham
+-  Zhinin Muruzumbay Lady Nathaly
 
-API REST desarrollada con **Spring Boot** para la gestión de una agencia de viajes.
-API->localhost o puerto 8080
+Proyecto desarrollado para la gestión de una agencia de viajes, que permite administrar clientes, reservas, destinos y facturación.
 
-El sistema permite administrar:
+El sistema está dividido en tres capas:
+- 🖥️ Frontend: React + Vite
+- ⚙️ Backend: Spring Boot (Java)
+- 🗄️ Base de datos: PostgreSQL
 
-* Clientes
-* Destinos
-* Reservas
-* Pagos
+---
+## Tecnologías utilizadas
 
-La aplicación implementa operaciones CRUD completas utilizando Spring Boot, Spring Data JPA y PostgreSQL.
+### Frontend
+- React
+- Vite
+- JavaScript
+- Axios
+- Tailwind CSS (si aplica)
 
+### Backend
+- Java
+- Spring Boot
+- Spring Data JPA
+- Spring Web
+- Spring Security (si aplica)
 
-## Estructura del proyecto
-
-```
-src
-├── controller
-├── dto
-├── model
-├── repository
-├── service
-│   └── impl
-└── config
-```
-
-## Base de datos
-
-La configuraciones con PostgreSQL estan por defecto, puerto escucha:5432. 
-
-Configurar el archivo:
-
-```
-src/main/resources/application.properties
-```
-
-Ejemplo:
-
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/agencia_viajes
-spring.datasource.username=root
-spring.datasource.password=tu_password
-
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-```
+### Base de Datos
+- MySQL / PostgreSQL (según configuración)
 
 ---
 
-## Ejecutar el proyecto
+## 📁 Estructura del proyecto en develop
 
-Clonar el repositorio:
+SistAgenciaViajes/
+│
+├── backend/ # API REST con Spring Boot
+├── frontend/ # Aplicación React
+├── database/ # Scripts SQL
+├── .gitignore
+└── README.md
 
+
+---
+
+## ⚙️ Instalación del proyecto
+
+### 1. Clonar repositorio desde develop
 ```bash
-git clone https://github.com/Abmint12/SistAgenciaViajes.git
-```
+git clone -b develop https://github.com/Abmint12/SistAgenciaViajes.git
 
-Entrar al proyecto:
+---
+#### 2. Ejectuar frontend
+```bash
+cd frontend
+npm install
+npm run dev
+---
 
+#### 3. Ejectuar backend
 ```bash
 cd backend
 ls
@@ -75,41 +76,3 @@ Ejecutar:
 ./mvnw spring-boot:run
 ```
 
-o desde tu IDE favorito.
-
----
-
-## API REST
-
-| Método | Endpoint       | Descripción        |
-| ------ | -------------- | ------------------ |
-| GET    | /clientes      | Listar clientes    |
-| POST   | /clientes      | Crear cliente      |
-| PUT    | /clientes/{id} | Actualizar cliente |
-| DELETE | /clientes/{id} | Eliminar cliente   |
-| GET    | /destinos      | Listar destinos    |
-| POST   | /destinos      | Crear destino      |
-| PUT    | /destinos/{id} | Actualizar destino |
-| DELETE | /destinos/{id} | Eliminar destino   |
-| GET    | /reservas      | Listar reservas    |
-| POST   | /reservas      | Crear reserva      |
-| PUT    | /reservas/{id} | Actualizar reserva |
-| DELETE | /reservas/{id} | Eliminar reserva   |
-| GET    | /pagos         | Listar pagos       |
-| POST   | /pagos         | Registrar pago     |
-| PUT    | /pagos/{id}    | Actualizar pago    |
-| DELETE | /pagos/{id}    | Eliminar pago      |
-
----
-
-## Estado del proyecto
-
-Versión estable **v1.0.0**
-
-Backend  funcional con operaciones CRUD para todas las entidades principales.
-
----
-
-## Autor
-
-Luis A. Zambrano
