@@ -1,17 +1,19 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import {
+  LayoutDashboard,
   Plane,
   Users,
   MapPin,
   CalendarCheck,
   CreditCard,
+  Receipt,
   LogOut,
 } from "lucide-react";
 
 const NAV_ITEMS = [
   {
     label: "Dashboard",
-    icon: Plane,
+    icon: LayoutDashboard,
     path: "/dashboard",
   },
   {
@@ -34,9 +36,10 @@ const NAV_ITEMS = [
     icon: CreditCard,
     path: "/dashboard/pagos",
   },
+  
 ];
 
-export default function Sidebar({ backendOnline }) {
+export default function Sidebar({ backendOnline = true }) {
   const navigate = useNavigate();
 
   return (
@@ -59,7 +62,7 @@ export default function Sidebar({ backendOnline }) {
         </div>
       </div>
 
-      {/* Menú */}
+      {/* Navegación */}
       <nav className="flex-1 px-4 py-5">
 
         <p className="mb-3 px-3 text-xs uppercase tracking-widest text-slate-500">
@@ -74,14 +77,14 @@ export default function Sidebar({ backendOnline }) {
               to={path}
               end={path === "/dashboard"}
               className={({ isActive }) =>
-                `flex items-center gap-3 rounded-xl px-4 py-3 transition-all duration-200 ${
+                `flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200 ${
                   isActive
                     ? "bg-brand-500 text-white shadow-md"
                     : "text-slate-300 hover:bg-navy-900 hover:text-white"
                 }`
               }
             >
-              <Icon size={19} />
+              <Icon size={18} />
               <span>{label}</span>
             </NavLink>
           ))}
@@ -119,15 +122,15 @@ export default function Sidebar({ backendOnline }) {
 
       </div>
 
-      {/* Cerrar sesión */}
+      {/* Botón Cerrar sesión */}
       <div className="border-t border-navy-800 p-4">
 
         <button
           onClick={() => navigate("/")}
-          className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-slate-300 transition hover:bg-red-600 hover:text-white"
+          className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-slate-300 transition-all duration-200 hover:bg-red-600 hover:text-white"
         >
           <LogOut size={18} />
-          Cerrar sesión
+          <span>Cerrar sesión</span>
         </button>
 
       </div>
