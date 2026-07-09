@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.agenciaviajes.backend.enums.EstadoPago;
 import com.agenciaviajes.backend.model.Pago;
 import com.agenciaviajes.backend.service.PagoService;
 
@@ -42,7 +43,7 @@ public class PagoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Pago> actualizar(@PathVariable Long id,
-                                           @RequestBody Pago pago) {
+            @RequestBody Pago pago) {
         return ResponseEntity.ok(pagoService.actualizar(id, pago));
     }
 
@@ -51,4 +52,6 @@ public class PagoController {
         pagoService.eliminar(id);
         return ResponseEntity.noContent().build();
     }
+
+   
 }

@@ -13,7 +13,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="facturas")
+@Table(name = "facturas")
 public class Factura {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +29,9 @@ public class Factura {
     @Column(name = "fecha_emision")
     private LocalDateTime fechaEmision;
 
+    @Column(nullable = false)
+    private String estado = "EMITIDA";
+
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal subtotal;
 
@@ -42,6 +45,12 @@ public class Factura {
     }
 
     // Getters y Setters
+    public String getEstado(){
+        return estado;
+    }
+    public void setEstado(String estado){
+        this.estado=estado;
+    }
 
     public Integer getId() {
         return id;
