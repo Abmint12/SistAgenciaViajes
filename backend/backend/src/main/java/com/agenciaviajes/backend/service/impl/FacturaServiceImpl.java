@@ -85,6 +85,11 @@ public class FacturaServiceImpl implements FacturaService {
         Pago pago = pagoRepository.findById(factura.getPago().getId())
                 .orElseThrow(() -> new RuntimeException("El pago no existe."));
 
+        if (pago.getEstado() != EstadoPago.PAGADO) {
+            throw new RuntimeException(
+                    "Solo se puede emitir factura para un pago PAGADO."
+                    );
+                }           
         if (!facturaExistente.getNumeroFactura().equals(factura.getNumeroFactura())
                 && facturaRepository.existsByNumeroFactura(factura.getNumeroFactura())) {
             throw new RuntimeException("El número de factura ya existe.");
@@ -102,13 +107,14 @@ public class FacturaServiceImpl implements FacturaService {
 
     @Override
     public void eliminar(Integer id) {
-
+    
         Factura factura = facturaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Factura no encontrada."));
-
+    
         factura.setEstado("ANULADA");
-
+    
         facturaRepository.save(factura);
+    
     }
 
 }

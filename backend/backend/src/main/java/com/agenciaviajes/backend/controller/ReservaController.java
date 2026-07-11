@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.agenciaviajes.backend.dto.ReservaRequest;
 import com.agenciaviajes.backend.dto.ReservaResponse;
+import com.agenciaviajes.backend.model.Reserva;
 import com.agenciaviajes.backend.service.ReservaService;
 
 @RestController
@@ -49,4 +50,7 @@ public class ReservaController {
     public void eliminar(@PathVariable Long id) {
         reservaService.eliminar(id);
     }
+
+    
+
 }

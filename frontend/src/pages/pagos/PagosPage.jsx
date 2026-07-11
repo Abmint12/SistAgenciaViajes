@@ -8,7 +8,7 @@ export default function PagosPage() {
     reservaId: "",
     metodoPago: "EFECTIVO",
     monto: "",
-    estado: "PENDIENTE",
+    estado: "PAGADO",
     fechaPago: new Date().toISOString().split("T")[0],
   });
 

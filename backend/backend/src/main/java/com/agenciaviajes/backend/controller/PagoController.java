@@ -36,6 +36,11 @@ public class PagoController {
         return ResponseEntity.ok(pagoService.listar());
     }
 
+    @GetMapping("/pagados")
+    public ResponseEntity<List<Pago>> listarPagados() {
+        return ResponseEntity.ok(pagoService.listarPagados());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Pago> buscar(@PathVariable Long id) {
         return ResponseEntity.ok(pagoService.buscarPorId(id));
@@ -53,5 +58,4 @@ public class PagoController {
         return ResponseEntity.noContent().build();
     }
 
-   
 }
