@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Search, Printer, Eye, Plus, Ban } from "lucide-react";
+import {useNavigate} from "react-router-dom";
 
 export default function FacturasPage() {
-
+  const navigate=useNavigate();
   const [facturas, setFacturas] = useState([]);
   const [pagos, setPagos] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -185,8 +186,13 @@ export default function FacturasPage() {
 
           </div>
 
-          <div className="flex gap-4">
-
+          <div className="flex items-center gap-4">
+            <button
+            onClick={()=>navigate ("/Dashboard/pagos")}
+            className="rounded-x1 bg-slate-600 px-5 py-3 font-semibold text-white transition hover:bg-slate-700"
+            >
+              ← Regresar
+            </button>
             <div className="rounded-xl bg-green-600 px-5 py-3 font-semibold text-white">
               Total: {facturas.length}
             </div>
