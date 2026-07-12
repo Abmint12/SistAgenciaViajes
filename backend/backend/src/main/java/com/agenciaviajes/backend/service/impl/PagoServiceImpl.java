@@ -12,48 +12,53 @@ import com.agenciaviajes.backend.repository.ReservaRepository;
 import com.agenciaviajes.backend.service.PagoService;
 
 @Service
-public class PagoServiceImpl implements PagoService{
+public class PagoServiceImpl implements PagoService {
     private final PagoRepository pagoRepository;
     private final ReservaRepository reservaRepository;
 
     public PagoServiceImpl(PagoRepository pagoRepository,
-                           ReservaRepository reservaRepository) {
+            ReservaRepository reservaRepository) {
         this.pagoRepository = pagoRepository;
         this.reservaRepository = reservaRepository;
     }
 
     @Override
     public Pago crear(Pago pago) {
-    
+
         if (pago.getReserva() == null || pago.getReserva().getId() == null) {
             throw new RuntimeException("Debe seleccionar una reserva.");
         }
-    
+
         Reserva reserva = reservaRepository.findById(
                 pago.getReserva().getId())
                 .orElseThrow(() -> new RuntimeException("La reserva no existe."));
-    
+
         if (pagoRepository.existsByReservaId(reserva.getId())) {
             throw new RuntimeException("La reserva ya tiene un pago registrado.");
         }
-    
+
         if (pago.getMonto() == null ||
-            pago.getMonto().doubleValue() <= 0) {
+                pago.getMonto().doubleValue() <= 0) {
             throw new RuntimeException("Monto inválido.");
         }
-    
+
         if (pago.getEstado() == null) {
             pago.setEstado(EstadoPago.PENDIENTE);
         }
-    
+
         pago.setReserva(reserva);
-    
+
         return pagoRepository.save(pago);
     }
 
     @Override
     public List<Pago> listar() {
         return pagoRepository.findAll();
+    }
+
+    @Override
+    public List<Pago> listarPagados() {
+        return pagoRepository.findByEstado(EstadoPago.PAGADO);
     }
 
     @Override

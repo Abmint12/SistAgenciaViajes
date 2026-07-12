@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { ArrowLeft } from "lucide-react";
 export default function PagosPage() {
   const navigate = useNavigate();
 
@@ -8,7 +8,7 @@ export default function PagosPage() {
     reservaId: "",
     metodoPago: "EFECTIVO",
     monto: "",
-    estado: "PENDIENTE",
+    estado: "PAGADO",
     fechaPago: new Date().toISOString().split("T")[0],
   });
 
@@ -59,7 +59,15 @@ export default function PagosPage() {
       <h1 className="mb-8 text-3xl font-bold text-navy-950">
         Registrar Pago
       </h1>
-
+      <div className="mb-6">
+        <button
+          onClick={() => navigate("/dashboard/pagos")}
+          className="flex items-center gap-2 rounded-lg bg-slate-600 px-4 py-2 text-white transition hover:bg-slate-700"
+        >
+          <ArrowLeft size={18} />
+          Regresar
+        </button>
+      </div>
       <form
         onSubmit={guardarPago}
         className="rounded-2xl bg-white p-8 shadow space-y-6"
