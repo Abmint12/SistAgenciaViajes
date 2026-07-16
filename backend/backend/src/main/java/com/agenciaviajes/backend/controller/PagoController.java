@@ -3,6 +3,7 @@ package com.agenciaviajes.backend.controller;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.agenciaviajes.backend.enums.EstadoPago;
 import com.agenciaviajes.backend.model.Pago;
 import com.agenciaviajes.backend.service.PagoService;
 
 @RestController
+@CrossOrigin(origins="*")
 @RequestMapping("/api/pagos")
 public class PagoController {
 
@@ -35,6 +38,11 @@ public class PagoController {
         return ResponseEntity.ok(pagoService.listar());
     }
 
+    @GetMapping("/pagados")
+    public ResponseEntity<List<Pago>> listarPagados() {
+        return ResponseEntity.ok(pagoService.listarPagados());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Pago> buscar(@PathVariable Long id) {
         return ResponseEntity.ok(pagoService.buscarPorId(id));
@@ -42,7 +50,7 @@ public class PagoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Pago> actualizar(@PathVariable Long id,
-                                           @RequestBody Pago pago) {
+            @RequestBody Pago pago) {
         return ResponseEntity.ok(pagoService.actualizar(id, pago));
     }
 
@@ -51,4 +59,5 @@ public class PagoController {
         pagoService.eliminar(id);
         return ResponseEntity.noContent().build();
     }
+
 }

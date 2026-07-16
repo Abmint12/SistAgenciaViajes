@@ -10,6 +10,8 @@ public interface PagoService {
 
     List<Pago> listar();
 
+    List<Pago> listarPagados();
+
     Pago buscarPorId(Long id);
 
     Pago actualizar(Long id, Pago pago);

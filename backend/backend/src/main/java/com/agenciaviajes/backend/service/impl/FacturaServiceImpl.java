@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.agenciaviajes.backend.enums.EstadoPago;
 import com.agenciaviajes.backend.model.Factura;
 import com.agenciaviajes.backend.model.Pago;
 import com.agenciaviajes.backend.repository.FacturaRepository;
@@ -13,13 +14,13 @@ import com.agenciaviajes.backend.repository.PagoRepository;
 import com.agenciaviajes.backend.service.FacturaService;
 
 @Service
-public class FacturaServiceImpl implements FacturaService{
+public class FacturaServiceImpl implements FacturaService {
 
-  private final FacturaRepository facturaRepository;
+    private final FacturaRepository facturaRepository;
     private final PagoRepository pagoRepository;
 
     public FacturaServiceImpl(FacturaRepository facturaRepository,
-                              PagoRepository pagoRepository) {
+            PagoRepository pagoRepository) {
         this.facturaRepository = facturaRepository;
         this.pagoRepository = pagoRepository;
     }
@@ -43,6 +44,10 @@ public class FacturaServiceImpl implements FacturaService{
 
         Pago pago = pagoRepository.findById(factura.getPago().getId())
                 .orElseThrow(() -> new RuntimeException("El pago no existe."));
+        if (pago.getEstado() != EstadoPago.PAGADO) {
+            throw new RuntimeException(
+                    "Solo se pueden emitir facturas para pagos PAGADOS.");
+        }
 
         if (facturaRepository.existsByNumeroFactura(factura.getNumeroFactura())) {
             throw new RuntimeException("El número de factura ya existe.");
@@ -63,7 +68,7 @@ public class FacturaServiceImpl implements FacturaService{
         }
 
         factura.setPago(pago);
-
+        factura.setEstado("EMITIDA");
         return facturaRepository.save(factura);
     }
 
@@ -80,6 +85,11 @@ public class FacturaServiceImpl implements FacturaService{
         Pago pago = pagoRepository.findById(factura.getPago().getId())
                 .orElseThrow(() -> new RuntimeException("El pago no existe."));
 
+        if (pago.getEstado() != EstadoPago.PAGADO) {
+            throw new RuntimeException(
+                    "Solo se puede emitir factura para un pago PAGADO."
+                    );
+                }           
         if (!facturaExistente.getNumeroFactura().equals(factura.getNumeroFactura())
                 && facturaRepository.existsByNumeroFactura(factura.getNumeroFactura())) {
             throw new RuntimeException("El número de factura ya existe.");
@@ -97,12 +107,14 @@ public class FacturaServiceImpl implements FacturaService{
 
     @Override
     public void eliminar(Integer id) {
-
-        if (!facturaRepository.existsById(id)) {
-            throw new RuntimeException("Factura no encontrada.");
-        }
-
-        facturaRepository.deleteById(id);
+    
+        Factura factura = facturaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Factura no encontrada."));
+    
+        factura.setEstado("ANULADA");
+    
+        facturaRepository.save(factura);
+    
     }
 
 }
